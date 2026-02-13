@@ -1,4 +1,4 @@
-# 📘 The Agile Student Playbook: GitHub Projects Edition
+# 📘 The Agile Student Playbook: GitHub Projects Edition 2026
 
 This guide outlines how we manage our software development lifecycle. We use **GitHub Projects** to track our work, but we have a specific workflow designed to keep multiple teams organized on a single board.
 
