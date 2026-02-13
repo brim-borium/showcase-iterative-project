@@ -2,7 +2,7 @@
 
 This guide outlines how we manage our software development lifecycle. We use **GitHub Projects** to track our work, but we have a specific workflow designed to keep multiple teams organized on a single board.
 
-See the project: https://github.com/users/brim-borium/projects/8  
+Here you find a link to the sample project of this repository: https://github.com/users/brim-borium/projects/8
 
 ## 1. The Core Concepts (Read This First)
 
@@ -46,13 +46,13 @@ An item cannot be worked on until it is **Ready**. To move a ticket status to **
 * ✅ **Milestone:** Assigned to your Team (e.g., "KG").
 * ✅ **Size:** Estimated (XS - XL).
 
-**🚀 The Rule:** If it doesn't have a size or a clear description, it stays in **Backlog**. Once it has all the above, change Status to **Ready**.
+**🚀 The Rule:** If it doesn't have a size, a clear description or it has open discussions, it stays in **Backlog**. Once it has all the above, change Status to **Ready**.
 
 ### Phase 3: Planning (The Buffer)
 
-Once an item is **Ready**, move it to the **Next Sprint** bucket.
+Once an item is **Ready**, move it to the **Next Sprint** bucket when you are planning the next sprint.
 
-1. Assign the **Iteration** field to the upcoming sprint.
+1. Assign the **Iteration** field to the upcoming sprint (not the current).
 2. This item will now appear on the **Next Sprint** board.
 3. *Note:* This is our "Buffer." If the current sprint finishes early, we pull from here.
 
@@ -60,10 +60,20 @@ Once an item is **Ready**, move it to the **Next Sprint** bucket.
 
 When the new sprint begins (or when you pull work forward):
 
-1. The item moves to the **Current Sprint** board (automatically if the date changes, or manually if pulling forward).
-2. **In Progress:** When you start coding, move the card to **In Progress**. Assign yourself to the card.
-3. **In Review:** When you open a Pull Request (PR), move the card to **In Review**.
-4. **Done:** When the PR is merged and verified, move to **Done**.
+1. **Move to Board:** The item moves to the **Current Sprint** board (automatically if the date changes, or manually if pulling forward – updating the iteration field).
+
+2. **⚡ How to Start Coding (Opening a PR):**
+   * Do **not** just create a random branch in your terminal.
+   * Click the card on the **Current Sprint** board to open the side panel.
+   * **Create Branch:** On the right sidebar, look for the **"Development"** section and click **"Create a branch"**.
+   * *Checkout:* Copy the git commands provided to checkout this branch locally.
+   * *Why?* This automatically names the branch (e.g., `15-fix-login-bug`), links the PR to the Issue, and enables automatic tracking.
+
+3. **In Progress:** Move the card to **In Progress** and assign yourself.
+
+4. **In Review:** When you have pushed your code and opened the PR (via the link created in step 2), move the card to **In Review**. PRs are always reviewed by another person.
+
+5. **Done:** When the PR is merged and verified, move to **Done**.
 
 ## 3. Navigating the Board
 
@@ -85,7 +95,7 @@ We have configured several "Views" to help you focus.
 ### Initial Initialization
 
 1. Create a new Project in GitHub.
-2. Select the **"Iteration"** template (this provides the base fields like Iteration).
+2. Select the **"Team Iteration"** template (this provides the base fields like Iteration).
 3. In this specific setup, go to your Repository -> Issues -> Milestones. Create three milestones: `Discovery World`, `KG`, `Multi-Agent System`. Set them to "No due date".
 
 ### View Configuration
@@ -93,24 +103,25 @@ We have configured several "Views" to help you focus.
 #### View 1: Current Sprint
 * **Layout:** Board.
 * **Column Field:** Status.
-* **Group by:** Milestone (This creates the swimlanes).
+* **Swimlanes:** Milestone.
 * **Filter:** `iteration:@current -status:Backlog`
 * **Sort:** Status (Ascending).
 
 #### View 2: Next Sprint
 * **Layout:** Board.
 * **Column Field:** Status.
-* **Group by:** Milestone.
+* **Swimlanes:** Milestone.
 * **Filter:** `iteration:@next`.
 
 #### View 3: Project Backlog
 * **Layout:** Table.
-* **Filter:** `-iteration:@current` to hide work from current sprint.
-* **Group by:** Milestone.
+* **Filter:** `-iteration:@current -status:Done`
+* **Sort by** Status to see what is ready first
 
-#### View 3: Team Backlogs (e.g., KG Backlog)
+#### View 4: Team Backlogs (e.g., Discovery World Backlog)
 * **Layout:** Table.
-* **Filter:** `milestone:"Multi-Agent System" -iteration:@current` to hide work from current sprint.
+* **Filter:** `milestone:"Discovery World" -iteration:@current -status:Done`
+* **Sort by** Status to see what is ready first
 
 #### View 4: Roadmap
 * **Layout:** Roadmap.
